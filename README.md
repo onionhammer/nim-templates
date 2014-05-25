@@ -8,6 +8,8 @@ Usage
 Import the 'templates' library at the top of your nimrod module, and use the syntax:
 
 ```nimrod
+import templates
+
 proc testPage (name: string) = tmpli html"""
     <body>
         <h1>Hello $name!</h1>
