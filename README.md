@@ -21,7 +21,7 @@ echo testPage()
 
 Syntax
 ------
-The templates syntax supports $for and $whie loops, $if/$elif/$else, multi-line statements, $case statements, procedure calls, etc. Look at the tests.nim file for more examples.
+The templates syntax supports $for and $while loops, $if/$elif/$else, multi-line statements, $case statements, procedure calls, etc. Look at the tests.nim file for more examples.
 
 
 Supported Syntaxes
