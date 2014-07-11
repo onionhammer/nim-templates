@@ -33,6 +33,7 @@ Realistically any well-structured syntax can be used as a template, but the NimL
 - Javascript
 - GLSL
 - RST
+- Markdown
 
 These can be invoked as follows:
 
