@@ -312,7 +312,7 @@ proc parse_template(node: PNimrodNode, value: string) =
     ## Nimrod code into the input `node` AST.
     var index = 0
     while index < value.len and
-          parse_until_symbol(node, value, index): nil
+          parse_until_symbol(node, value, index): discard
 
 
 macro tmpli*(body: expr): stmt =
