@@ -4,7 +4,7 @@
 
 
 # Imports
-import tables, parseutils, macros, strutils
+import tables, parseutils, macros, strutils, os
 import annotate
 export annotate
 
@@ -319,9 +319,15 @@ macro tmpli*(body: expr): stmt =
     result = newStmtList()
 
     result.add parseExpr("result = \"\"")
-
-    var value = if body.kind in nnkStrLit..nnkTripleStrLit: body.strVal
-                else: body[1].strVal
+    
+    var value: string
+    case body.kind:
+      of nnkStrLit:
+        value = readFile(body.strVal)
+      of nnkTripleStrLit: 
+        value = body.strVal
+      else: 
+        value = body[1].strVal
 
     parse_template(result, reindent(value))
 
