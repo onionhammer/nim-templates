@@ -315,19 +315,20 @@ proc parse_template(node: NimNode, value: string) =
           parse_until_symbol(node, value, index): discard
 
 
+macro tmplf*(body: expr): stmt =
+    result = newStmtList()
+    result.add parseExpr("result = \"\"")
+    var value = readFile(body.strVal)
+    parse_template(result, reindent(value))
+    
+    
 macro tmpli*(body: expr): stmt =
     result = newStmtList()
 
     result.add parseExpr("result = \"\"")
-    
-    var value: string
-    case body.kind:
-      of nnkStrLit:
-        value = readFile(body.strVal)
-      of nnkTripleStrLit: 
-        value = body.strVal
-      else: 
-        value = body[1].strVal
+
+    var value = if body.kind in nnkStrLit..nnkTripleStrLit: body.strVal
+                else: body[1].strVal
 
     parse_template(result, reindent(value))
 
