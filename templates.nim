@@ -4,7 +4,7 @@
 
 
 # Imports
-import tables, parseutils, macros, strutils
+import tables, parseutils, macros, strutils, os
 import annotate
 export annotate
 
@@ -315,6 +315,13 @@ proc parse_template(node: NimNode, value: string) =
           parse_until_symbol(node, value, index): discard
 
 
+macro tmplf*(body: expr): stmt =
+    result = newStmtList()
+    result.add parseExpr("result = \"\"")
+    var value = readFile(body.strVal)
+    parse_template(result, reindent(value))
+    
+    
 macro tmpli*(body: expr): stmt =
     result = newStmtList()
 
