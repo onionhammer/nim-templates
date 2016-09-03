@@ -1,13 +1,13 @@
 nim-templates
 =============
 
-A simple string templating library for Nimrod
+A simple string templating library for Nim
 
 Usage
 -----
-Import the 'templates' library at the top of your nimrod module, and use the syntax:
+Import the 'templates' library at the top of your nim module, and use the syntax:
 
-```nimrod
+```nim
 import templates
 
 proc testPage (name: string): string = tmpli html"""
@@ -37,7 +37,7 @@ Realistically any well-structured syntax can be used as a template, but the NimL
 
 These can be invoked as follows:
 
-```nimrod
+```nim
 tmpli xml""" ... """
 tmpli css""" ... """
 # etc
