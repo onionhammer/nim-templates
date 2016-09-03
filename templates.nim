@@ -1,6 +1,6 @@
 # Ref:
-# http://nimrod-lang.org/macros.html
-# http://nimrod-lang.org/parseutils.html
+# http://nim-lang.org/docs/macros.html
+# http://nim-lang.org/docs/parseutils.html
 
 
 # Imports
@@ -309,7 +309,7 @@ proc parse_until_symbol(node: NimNode, value: string, index: var int): bool {.co
 
 proc parse_template(node: NimNode, value: string) =
     ## Parses through entire template, outputing valid
-    ## Nimrod code into the input `node` AST.
+    ## Nim code into the input `node` AST.
     var index = 0
     while index < value.len and
           parse_until_symbol(node, value, index): discard
