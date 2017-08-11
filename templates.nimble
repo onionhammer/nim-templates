@@ -1,6 +1,8 @@
-[Package]
-name = "templates"
-version = "0.2"
+version = "0.3"
 author = "Erik O'Leary"
-description = "TODO"
+description = "a compile-time templating engine for nim"
 license = "BSD"
+skipDirs = @["tests"]
+task test, "Runs the test suite":
+  exec "nim c -r tests/annotate_tests.nim"
+  exec "nim c -r tests/templates_tests.nim"

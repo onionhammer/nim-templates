@@ -5,7 +5,7 @@
 
 # Imports
 import tables, parseutils, macros, strutils, os
-import annotate
+import templates/annotate
 export annotate
 
 
@@ -340,8 +340,3 @@ macro tmpl*(body: expr): stmt =
                 else: body[1].strVal
 
     parse_template(result, reindent(value))
-
-
-# Run tests
-when isMainModule:
-    include tests
