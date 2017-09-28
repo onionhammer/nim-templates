@@ -16,7 +16,7 @@ proc testPage (name: string): string = tmpli html"""
     </body>
     """
 
-echo testPage()
+echo testPage("Charlie")
 ```
 
 Syntax
