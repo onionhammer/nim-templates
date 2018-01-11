@@ -1,4 +1,4 @@
-version = "0.3"
+version = "0.4"
 author = "Erik O'Leary"
 description = "a compile-time templating engine for nim"
 license = "BSD"
