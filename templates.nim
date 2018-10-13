@@ -54,14 +54,13 @@ proc trim_eol(value: var string) {.compiletime.} =
             value = value.substr(0, i)
             break
 
-        # This is the first character
-        if i == 0:
-            value = ""
-            break
-
         # Skip change
         if not (value[i] in [' ', '\t']): break
 
+        # This is the first character, and it's not whitespace
+        if i == 0:
+            value = ""
+            break
 
 proc detect_indent(value: string, index: int): int {.compiletime.} =
     ## Detects how indented the line at `index` is.

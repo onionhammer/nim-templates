@@ -62,6 +62,16 @@ when true:
         echo actual()
         assert actual() == expected
 
+    block:
+        # regression test: there was an issue where if the template started with
+        # a single character that was immediately followed by a $( or ${ block,
+        # that character would disappear from the output
+        proc actual(): string = tmpli js"-$(x)"
+        const expected = js"-5"
+
+        echo actual()
+        assert actual() == expected
+
     block: #forIn
         proc actual: string = tmpli html"""
             <p>Test for</p>
