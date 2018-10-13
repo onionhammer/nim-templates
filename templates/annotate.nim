@@ -1,7 +1,7 @@
 import macros, parseutils
 
 # Generate tags
-macro make(names: openarray[expr]): stmt {.immediate.} =
+macro make(names: varargs[untyped]): typed =
     result = newStmtList()
 
     for i in 0 .. names.len-1:
@@ -62,4 +62,4 @@ proc reindent*(value: string, preset_indent = 0): string =
 
 
 #Define tags
-make([ html, xml, glsl, js, css, rst, md, nim ])
+make(html, xml, glsl, js, css, rst, md, nim)

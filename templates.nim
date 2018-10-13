@@ -54,14 +54,13 @@ proc trim_eol(value: var string) {.compiletime.} =
             value = value.substr(0, i)
             break
 
-        # This is the first character
-        if i == 0:
-            value = ""
-            break
-
         # Skip change
         if not (value[i] in [' ', '\t']): break
 
+        # This is the first character, and it's not whitespace
+        if i == 0:
+            value = ""
+            break
 
 proc detect_indent(value: string, index: int): int {.compiletime.} =
     ## Detects how indented the line at `index` is.
@@ -122,7 +121,7 @@ iterator parse_compound_statements(value, identifier: string, index: int): strin
     ## and returns the initialization of each as an empty statement
     ## i.e. if x == 5 { ... } becomes if x == 5: nil.
 
-    template get_next_ident(expected): stmt =
+    template get_next_ident(expected): typed =
         var nextIdent: string
         discard value.parseWhile(nextIdent, {'$'} + identChars, i)
 
@@ -315,14 +314,14 @@ proc parse_template(node: NimNode, value: string) =
           parse_until_symbol(node, value, index): discard
 
 when not defined(js):
-    macro tmplf*(body: expr): stmt =
+    macro tmplf*(body: untyped): typed =
         result = newStmtList()
         result.add parseExpr("result = \"\"")
         var value = readFile(body.strVal)
         parse_template(result, reindent(value))
-    
-    
-macro tmpli*(body: expr): stmt =
+
+
+macro tmpli*(body: untyped): typed =
     result = newStmtList()
 
     result.add parseExpr("result = \"\"")
@@ -333,7 +332,7 @@ macro tmpli*(body: expr): stmt =
     parse_template(result, reindent(value))
 
 
-macro tmpl*(body: expr): stmt =
+macro tmpl*(body: untyped): typed =
     result = newStmtList()
 
     var value = if body.kind in nnkStrLit..nnkTripleStrLit: body.strVal
