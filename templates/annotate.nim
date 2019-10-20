@@ -1,7 +1,7 @@
 import macros, parseutils
 
 # Generate tags
-macro make(names: varargs[untyped]): typed =
+macro make(names: varargs[untyped]): void =
     result = newStmtList()
 
     for i in 0 .. names.len-1:

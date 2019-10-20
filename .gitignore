@@ -1,3 +1,6 @@
+# Output folder
+bin/
+
 # Object files
 *.o
 *.ko
